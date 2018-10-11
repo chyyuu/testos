@@ -12,3 +12,4 @@ panic = "abort" # disable stack unwinding on panic
 panic = "abort" # disable stack unwinding on panic
 
 [dependencies]
+bootloader_precompiled = "0.2.0"
