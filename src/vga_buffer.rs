@@ -1,16 +1,17 @@
 use core::fmt;
+use spin::Mutex;
 use volatile::Volatile;
 
-// lazy_static! {
-//     /// A global `Writer` instance that can be used for printing to the VGA text buffer.
-//     ///
-//     /// Used by the `print!` and `println!` macros.
-//     pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
-//         column_position: 0,
-//         color_code: ColorCode::new(Color::Yellow, Color::Black),
-//         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-//     });
-// }
+lazy_static! {
+    /// A global `Writer` instance that can be used for printing to the VGA text buffer.
+    ///
+    /// Used by the `print!` and `println!` macros.
+    pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+    });
+}
 
 /// The standard color palette in VGA text mode.
 #[allow(dead_code)]
@@ -144,18 +145,4 @@ impl fmt::Write for Writer {
         self.write_string(s);
         Ok(())
     }
-}
-
-
-
-pub fn print_something() {
-    let mut writer = Writer {
-        column_position: 0,
-        color_code: ColorCode::new(Color::Yellow, Color::Black),
-        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-    };
-
-    writer.write_byte(b'H');
-    writer.write_string("ello ");
-    writer.write_string("Wörld!");
 }
