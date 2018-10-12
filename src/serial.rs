@@ -15,6 +15,7 @@ pub fn print(args: ::core::fmt::Arguments) {
 }
 
 /// Prints to the host through the serial interface.
+#[macro_export]
 macro_rules! serial_print {
     ($($arg:tt)*) => {
         $crate::serial::print(format_args!($($arg)*));
@@ -22,6 +23,7 @@ macro_rules! serial_print {
 }
 
 /// Prints to the host through the serial interface, appending a newline.
+#[macro_export]
 macro_rules! serial_println {
     () => (serial_print!("\n"));
     ($fmt:expr) => (serial_print!(concat!($fmt, "\n")));
