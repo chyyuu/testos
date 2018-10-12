@@ -7,7 +7,7 @@ extern crate volatile;
 extern crate lazy_static;
 extern crate uart_16550;
 extern crate x86_64;
-
+use x86_64::structures::idt::{InterruptDescriptorTable, ExceptionStackFrame};
 #[cfg(test)]
 extern crate array_init;
 #[cfg(test)]
