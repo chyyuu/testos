@@ -3,6 +3,9 @@ name = "testos"
 version = "0.1.0"
 authors = ["chyyuu <yuchen@tsinghua.edu.cn>"]
 
+[features]
+integration-test = []
+
 # the profile used for `cargo build`
 [profile.dev]
 panic = "abort" # disable stack unwinding on panic
@@ -19,6 +22,7 @@ bootloader_precompiled = "0.2.0"
 volatile = "0.2.3"
 spin = "0.4.6"
 uart_16550 = "0.1.0"
+x86_64 = "0.2.8"
 
 [dependencies.lazy_static]
 version = "1.0"
