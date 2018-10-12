@@ -5,6 +5,7 @@
 extern crate bootloader_precompiled;
 extern crate volatile;
 extern crate spin;
+extern crate uart_16550;
 #[macro_use]
 extern crate lazy_static;
 
@@ -14,8 +15,8 @@ extern crate std;
 extern crate array_init;
 
 pub mod vga_buffer;
-
-
+#[macro_use]
+mod serial;
 
 use core::panic::PanicInfo;
 
@@ -29,6 +30,6 @@ fn panic(_info: &PanicInfo) -> ! {
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
-
+    serial_println!("Hello Host{}", "!");
     loop {}
 }
