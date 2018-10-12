@@ -7,6 +7,9 @@ authors = ["chyyuu <yuchen@tsinghua.edu.cn>"]
 [profile.dev]
 panic = "abort" # disable stack unwinding on panic
 
+[dev-dependencies]
+array-init = "0.0.3" #provides a safe interface for the Volatile wrapper 
+
 # the profile used for `cargo build --release`
 [profile.release]
 panic = "abort" # disable stack unwinding on panic

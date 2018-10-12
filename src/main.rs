@@ -10,6 +10,8 @@ extern crate lazy_static;
 
 #[cfg(test)]
 extern crate std;
+#[cfg(test)]
+extern crate array_init;
 
 pub mod vga_buffer;
 
