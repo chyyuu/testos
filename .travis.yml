@@ -1,0 +1,35 @@
+language: rust
+
+sudo: false
+
+notifications:
+    email:
+        on_success: never
+        on_failure: change
+
+rust:
+    - nightly
+
+os:
+  - linux
+
+cache:
+  cargo: true
+
+addons:
+  apt:
+    packages:
+      - qemu-system-x86
+      - nasm
+
+before_script:
+  - rustup component add rust-src
+  - (test -x $HOME/.cargo/bin/cargo-install-update || cargo install cargo-update)
+  - (test -x $HOME/.cargo/bin/cargo-xbuild || cargo install cargo-xbuild)
+  - (test -x $HOME/.cargo/bin/bootimage || cargo install bootimage)
+  - cargo install-update -a
+
+script:
+  - bootimage build
+  - cargo test
+  - bootimage test
